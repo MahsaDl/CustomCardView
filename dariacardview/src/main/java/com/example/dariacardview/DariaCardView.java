@@ -16,10 +16,8 @@ import androidx.cardview.widget.CardView;
 
 public class DariaCardView extends CardView {
 
-    private static final int MARGIN = 10;
-    private static final int RADIUS = 16;
+
     Paint paint;
-    Canvas canvas;
     TypedArray typedArray;
 
     public DariaCardView(@NonNull Context context) {
@@ -31,21 +29,19 @@ public class DariaCardView extends CardView {
     public DariaCardView(@NonNull Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
         init(attrs, context);
-        setCardBackgroundColor(typedArray.getColor(R.styleable.DariaCardView_dariaCardBackgroundColor, Color.BLACK));
 
     }
 
     public DariaCardView(@NonNull Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         init(attrs, context);
-        setCardBackgroundColor(typedArray.getColor(R.styleable.DariaCardView_dariaCardBackgroundColor, Color.BLACK));
 
     }
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
-        this.canvas = canvas;
 
+        paint =new Paint();
         Rect rectSrc= new Rect(200,100,1000,1000);
         Rect rectDst= new Rect(100,100,getWidth()-100,getHeight()-100);
         Bitmap bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.daria);
@@ -55,6 +51,8 @@ public class DariaCardView extends CardView {
 
     private void init(@Nullable AttributeSet attrs, Context context) {
         typedArray = context.obtainStyledAttributes(attrs, R.styleable.DariaCardView);
+        setCardBackgroundColor(typedArray.getColor(R.styleable.DariaCardView_dariaCardBackgroundColor, Color.BLACK));
+        setCardElevation(typedArray.getDimension(R.styleable.DariaCardView_dariaCardElevation, 0));
     }
 
 
